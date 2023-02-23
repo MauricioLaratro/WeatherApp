@@ -16,7 +16,7 @@ export function formatDate(date, options = defaultDateOptions) {
 
 
 // function para formatear la temperatura. solo le estamos agregando, con un template literal, el simbolo de los grados ° al numero obtenido de value.
-// Utilizamos el objeto con la propiedad Math.floor para que redondee el numero de la temperatura y no nos de decimales. (Floor siempre redondea hacia abajo)
+// Utilizamos el objeto con la propiedad Math.floor para que redondee el numero de la temperatura y no nos de decimales. (Floor siempre redondea hacia abajo-)
 export function formatTemp(value) {
     return `${Math.floor(value)}°`
 }

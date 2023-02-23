@@ -16,8 +16,26 @@ function setCurrentDate($element){
 
 // function para configurar la temperatura actual.
 function setCurrentTemp($element, temp) {
-
     $element.textContent = formatTemp(temp)
+}
+
+
+// fucntion para obtener la info. si es de dia o de noche, dinamicamente.
+function solarStatus(sunriseTime, sunsetTime) {
+    // almacenamos la fecha actual, por eso Date() pasandola vacia, sin argumentos dentro de los () ya que de esta manera, indicara la fecha en la que se active la peticion. getHours() utilizamos para obtener solo las horas actuales, ya que no necesitamos toda la fecha completa. Luego tambien almacenamos .getHours de sunriseTime y sunsetTime.
+    const currentHours = new Date().getHours()    
+    const sunriseHours = sunriseTime.getHours()    
+    const sunsetHours = sunsetTime.getHours()
+
+    // validacion en la que indicamos que si currentHours es menor a la hora en la que sale el solo O... (||) currentHours es mayor a la hora en la que se esconde el sol. Quiero decir que es de noche. De lo contrario es de dia.
+    if (currentHours < sunriseHours || currentHours > sunsetHours) {
+        return 'night'
+    }
+    return 'morning'
+}
+// function para obtener el background que corresponda al clima actual.
+function setBackground($element, solarStatus) {
+    $element.style.backgroundImage = `url(./images/${solarStatus}-drizzle.jpg)`
 }
 
 
@@ -40,7 +58,12 @@ function configCurrentWeather(weather){
     const temp = weather.main.temp
     setCurrentTemp($currentWeatherTemp, temp)
 
-    
+    // almacenamos en constantes los valores de sunrise y sunsut del objeto sys que esta dentro de weather, para poder determinar la franja horaria en la que sale el sol y la franja horaria en la que se esconde. Y lo pasamos de numeros a fechas con "new Date". Tambien lo multiplicamos por 1.000 porque los valores de sunrise y sunset que otenemos de manera externa hacia weather, estan expresado en segundos y JavaScript los necesita en milisengundo, para devolvernos la hora correctamente.
+    const sunriseTime = new Date (weather.sys.sunrise * 1000)
+    const sunsetTime = new Date (weather.sys.sunset * 1000)
+    // metodo para situar el background obtenido, al elemento html correspondiente.
+    const $app = document.querySelector('#app')
+    setBackground($app, solarStatus(sunriseTime, sunsetTime))
 }
 
 // Exportamos la configuracion global que hicimos hasta ahora, al index.js ya que esto forma parte de un modulo js, es necesito exportarlo y alli importarlo para que funcionen los scripts.
