@@ -35,7 +35,7 @@ function solarStatus(sunriseTime, sunsetTime) {
 }
 // function para obtener el background que corresponda al clima actual.
 function setBackground($element, solarStatus) {
-    $element.style.backgroundImage = `url(./images/${solarStatus}-drizzle.jpg)`
+    $element.style.backgroundImage = `url(./images/${solarStatus}-drizzle.gif)`
 }
 
 
