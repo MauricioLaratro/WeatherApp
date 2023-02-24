@@ -1,6 +1,7 @@
 import weather from '../data/current-weather.js'
 import { formatDate, formatTemp } from './utils/format-data.js'
 import { weatherConditionsCodes } from './constants.js'
+import { getCurrentPosition } from './geolocation.js'
 
 // ingresamos al objeto weather que esta dentro de weather y seleccionamos su primer elemento (0) que es el objeto que contiene el id que indica el tipo de clima, que este es un number y con String lo transformamos a un string. Los strings tienen el metodo .chartAt que nos dice que caracter esta en la posicion que le pasamos entre los () en este caso es 0 porque necesitamos el primer caracter del id. Para hacer que coincida con los numeros de nuestro diccionario de weatherConditionsCodes y todo eso lo colocamos dentro de weatherConditionsCodes, para que haga la comparacion de numeros
 // weatherConditionsCodes[String(weather.weather[0].id).charAt(0)]
@@ -80,5 +81,6 @@ function configCurrentWeather(weather){
 
 // Exportamos la configuracion global que hicimos hasta ahora, al index.js ya que esto forma parte de un modulo js, es necesito exportarlo y alli importarlo para que funcionen los scripts.
 export default function currentWeather(){
+    getCurrentPosition()
     configCurrentWeather(weather)
 }
