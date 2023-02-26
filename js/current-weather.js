@@ -80,7 +80,15 @@ function configCurrentWeather(weather){
 }
 
 // Exportamos la configuracion global que hicimos hasta ahora, al index.js ya que esto forma parte de un modulo js, es necesito exportarlo y alli importarlo para que funcionen los scripts.
+// Para ejecutar getCurrentPosition dentro de currentWeather, utilizamos el metodo .then de la promesa que realizamos en la function getCurrentPosition. Ya que, la obtencion de la ubicacion actual, es algo ASINCRONO, es decir no se ejecuta de manera inmediata al ejecutar la app. Es la mejor forma de poder utilizar los datos que obtenemos de getCurrentPosition fuera de su propia function. Ademas nos sirve por si queremos utilizar tambien un catch por si la ubicacion actual no puede ser obtenida por algun error.
 export default function currentWeather(){
     getCurrentPosition()
+    .then((data) =>{
+        console.log('HEMOS TRIUNFADO', data)
+    })
+    // catch se ejecutara si por algun motivo .then no se pudo ejectura. contiene mismo que pusimos en reject en la promesa de getCurrentPosition.
+    .catch((message) => {
+        console.log(message)
+    })
     configCurrentWeather(weather)
 }

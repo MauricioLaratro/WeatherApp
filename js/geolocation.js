@@ -16,9 +16,20 @@ function geolocationSupport() {
 // con el if implementamos que si no(!) hay soporte de geolocation, devolvemos el new Error que hemos creado. De lo contrario, es decir que si hay soporte, se pasara esa validacion y se ejecutara el siguiente codigo que es donde obtenemos la geolocation por su metodo .getCurrentPosition().
 export function getCurrentPosition() {
     if (!geolocationSupport()) throw new Error('No hay soporte de geolocalización en tu navegador')
-
-    navigator.geolocation.getCurrentPosition((position) =>{
-        const lat = position.coords.latitude
-        const lon = position.coords.longitude
+    // Creamos una Promise para poder utilizar su metodo .then y asi para poder obtener lat y lon fuera de esta function, ya que esta function es asincrona, ya que debe esperar a obtener la informacion de geolocalizacion.
+    return new Promise((resolve, reject) => {
+        navigator.geolocation.getCurrentPosition((position) =>{
+            const lat = position.coords.latitude
+            const lon = position.coords.longitude
+            resolve({
+                lat,
+                lon
+            })
+        },
+        // Este es el segundo parametro de nuestra getCurrentPosition y es el reject, es decir lo que se va a activar, en caso de que no podamos obtener la ubicacion del usuario. (lo que deberia suceder en resolve)
+        () => {
+            reject('No hemos podido obtener tu ubicación!')
+        }, 
+        {})
     })
 }
