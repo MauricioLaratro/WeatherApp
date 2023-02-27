@@ -1,7 +1,7 @@
 import weather from '../data/current-weather.js'
 import { formatDate, formatTemp } from './utils/format-data.js'
 import { weatherConditionsCodes } from './constants.js'
-import { getCurrentPosition } from './geolocation.js'
+import { getLatLon } from './geolocation.js'
 
 // ingresamos al objeto weather que esta dentro de weather y seleccionamos su primer elemento (0) que es el objeto que contiene el id que indica el tipo de clima, que este es un number y con String lo transformamos a un string. Los strings tienen el metodo .chartAt que nos dice que caracter esta en la posicion que le pasamos entre los () en este caso es 0 porque necesitamos el primer caracter del id. Para hacer que coincida con los numeros de nuestro diccionario de weatherConditionsCodes y todo eso lo colocamos dentro de weatherConditionsCodes, para que haga la comparacion de numeros
 // weatherConditionsCodes[String(weather.weather[0].id).charAt(0)]
@@ -81,14 +81,17 @@ function configCurrentWeather(weather){
 
 // Exportamos la configuracion global que hicimos hasta ahora, al index.js ya que esto forma parte de un modulo js, es necesito exportarlo y alli importarlo para que funcionen los scripts.
 // Para ejecutar getCurrentPosition dentro de currentWeather, utilizamos el metodo .then de la promesa que realizamos en la function getCurrentPosition. Ya que, la obtencion de la ubicacion actual, es algo ASINCRONO, es decir no se ejecuta de manera inmediata al ejecutar la app. Es la mejor forma de poder utilizar los datos que obtenemos de getCurrentPosition fuera de su propia function. Ademas nos sirve por si queremos utilizar tambien un catch por si la ubicacion actual no puede ser obtenida por algun error.
-export default function currentWeather(){
-    getCurrentPosition()
-    .then((data) =>{
-        console.log('HEMOS TRIUNFADO', data)
-    })
-    // catch se ejecutara si por algun motivo .then no se pudo ejectura. contiene mismo que pusimos en reject en la promesa de getCurrentPosition.
-    .catch((message) => {
-        console.log(message)
-    })
+export default async function currentWeather(){
+    const { lat, lon, isError } = await getLatLon()
+    if (isError) return console.log('Ah ocurrido un error al intentar ubicarte')
+    console.log(lat, lon)
+    // getCurrentPosition()
+    // .then((data) =>{
+    //     console.log('HEMOS TRIUNFADO', data)
+    // })
+    // // catch se ejecutara si por algun motivo .then no se pudo ejectura. contiene mismo que pusimos en reject en la promesa de getCurrentPosition.
+    // .catch((message) => {
+    //     console.log(message)
+    // })
     configCurrentWeather(weather)
 }
