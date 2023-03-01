@@ -6,11 +6,11 @@
 @import './loading.css';
 
 .app {
-  block-size: 100vh;
+  block-size: calc(100vh - var(--weeaklyBlockSize));
   background-image: url('../images/morning-clean.gif');
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: right bottom;
+  background-position: bottom;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;

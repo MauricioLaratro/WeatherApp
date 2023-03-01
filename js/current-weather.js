@@ -93,8 +93,8 @@ export default async function currentWeather(){
     // .catch((message) => {
     //     console.log(message)
     // })
-    // renombramos el irError que viene la function geyCurrentWeathet y lo almacenamos en una constante en forma de objeto, junto con la info de la ubicacion actual que es data, pero lo renombramos como weather, Luego le decirmos que imprima el console.log si es que ocurre un error y que si se pasa la validacion del error que entonces se llegue a configCurrentWeather que es la configuracion.
+    // renombramos el irError que viene la function getCurrentWeathet y lo almacenamos en una constante en forma de objeto, junto con la info del clima actual que es data, pero lo renombramos como weather, Luego le decirmos que imprima el console.log si es que ocurre un error y que si se pasa la validacion del error que entonces se llegue a configCurrentWeather que es la configuracion.
     const { isError: currentWeatherError, data: weather } = await getCurrentWeather(lat, lon)
-    if (currentWeatherError) return console.assert('Ha ocurrido un error al intentar traer los datos del clima!')
+    if (currentWeatherError) return console.log('Ha ocurrido un error al intentar traer los datos del clima!')
     configCurrentWeather(weather)
 }
