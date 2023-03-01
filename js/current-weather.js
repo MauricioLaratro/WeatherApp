@@ -1,7 +1,8 @@
-import weather from '../data/current-weather.js'
+// import weather from '../data/current-weather.js'
 import { formatDate, formatTemp } from './utils/format-data.js'
 import { weatherConditionsCodes } from './constants.js'
 import { getLatLon } from './geolocation.js'
+import { getCurrentWeather } from './services/weather.js'
 
 // ingresamos al objeto weather que esta dentro de weather y seleccionamos su primer elemento (0) que es el objeto que contiene el id que indica el tipo de clima, que este es un number y con String lo transformamos a un string. Los strings tienen el metodo .chartAt que nos dice que caracter esta en la posicion que le pasamos entre los () en este caso es 0 porque necesitamos el primer caracter del id. Para hacer que coincida con los numeros de nuestro diccionario de weatherConditionsCodes y todo eso lo colocamos dentro de weatherConditionsCodes, para que haga la comparacion de numeros
 // weatherConditionsCodes[String(weather.weather[0].id).charAt(0)]
@@ -84,7 +85,6 @@ function configCurrentWeather(weather){
 export default async function currentWeather(){
     const { lat, lon, isError } = await getLatLon()
     if (isError) return console.log('Ah ocurrido un error al intentar ubicarte')
-    console.log(lat, lon)
     // getCurrentPosition()
     // .then((data) =>{
     //     console.log('HEMOS TRIUNFADO', data)
@@ -93,5 +93,8 @@ export default async function currentWeather(){
     // .catch((message) => {
     //     console.log(message)
     // })
+    // renombramos el irError que viene la function geyCurrentWeathet y lo almacenamos en una constante en forma de objeto, junto con la info de la ubicacion actual que es data, pero lo renombramos como weather, Luego le decirmos que imprima el console.log si es que ocurre un error y que si se pasa la validacion del error que entonces se llegue a configCurrentWeather que es la configuracion.
+    const { isError: currentWeatherError, data: weather } = await getCurrentWeather(lat, lon)
+    if (currentWeatherError) return console.assert('Ha ocurrido un error al intentar traer los datos del clima!')
     configCurrentWeather(weather)
 }
