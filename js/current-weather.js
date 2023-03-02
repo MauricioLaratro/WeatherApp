@@ -50,8 +50,19 @@ function setBackground($element, conditionCode, solarStatus) {
 }
 
 
+const $allApp = document.querySelector('#allApp')
+const $loading = document.querySelector('#loading')
+// function para quitar el hidden a la app y darselo al loader
+function showCurrentWeather(app, loader) {
+    app.hidden = false
+    loader.hidden = true
+}
+
 //funcion para situar los datos obtenidos, en los elementos html correspondiente
 function configCurrentWeather(weather){
+
+    // llamamos a la function para quitar y dar el hidden. Y le pasamos las variables con lo elementos html correspondientes. Y se cambian dinamicamente ya que configCurrentWeather es asincrona y espera a tener los datos del clima actual antes de ejecutarse.
+    showCurrentWeather($allApp, $loading)
 
     // function para situar los datos sobre la fecha actual, en el elemento html correspondiente.
     const $currentWeatherDate = document.querySelector('#current-weather-date')
