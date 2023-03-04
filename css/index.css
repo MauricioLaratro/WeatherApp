@@ -6,7 +6,9 @@
 @import './loading.css';
 
 .app {
-  block-size: calc(100vh - var(--weeaklyBlockSize));
+  /* block-size: calc(100% - var(--weeaklyBlockSize)); */
+  /* max-block-size: calc(100vh - var(--weeaklyBlockSize)); */
+  /* block-size: 100%; */
   background-image: url('../images/morning-clean.gif');
   background-size: cover;
   background-repeat: no-repeat;
