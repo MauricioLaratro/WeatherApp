@@ -18,3 +18,17 @@ export async function getCurrentWeather(lat, lon){
         data: data
     }
 }
+
+// duplicamos la function de arriba, pero esta sirve para obtener el pronostico de los siguientes 5 dias, lo unico que cambia es una parte de la web api, en vez de traer weather ahora trae forecast.
+export async function getWeeklyWeather(lat, lon){
+    const response = await fetch(`${BASE_API}forecast?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`)
+    if (!response.ok) return {
+        isError: true,
+        data: null
+    }
+    const data = await response.json()
+    return {
+        isError: false,
+        data: data
+    }
+}

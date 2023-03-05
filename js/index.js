@@ -2,6 +2,7 @@
 
 
 import currentWeather from './current-weather.js'
+import weeklyWeather from './weekly-weather.js'
 import { ViewportSize, ViewportSizeInApp } from './utils/viewport.js'
 // Ademas de poder importar todo el modulo como lo hacermos con currentWeather o importar solo algunas functions como lo hacemos en la que le sigue. tambien podemos importar directamente un archivo y lo que hara esto es ejecturas directamente todo lo que este en este archivo (esto se llama SIDE EFECT), como lo haremos en la siguiente linea...
 import './tabs.js'
@@ -13,3 +14,4 @@ ViewportSize($allApp)
 ViewportSize($loading)
 ViewportSizeInApp($app)
 currentWeather()
+weeklyWeather()
