@@ -12,7 +12,9 @@
   <title>Weather App</title>
 </head>
 <body>
-  <div class="loading" id="loading"></div>
+  <div class="loading" id="loading">
+    <span class="loader"></span>
+  </div>
   <div class="all-app" id="allApp" hidden>
     <div class="app" id="app">
       <div class="currentWeather">
@@ -24,7 +26,7 @@
       </div>
     </div>
       <div class="weeklyWeather">
-        <div class="weeklyWeather-marker"></div>
+        <div class="weeklyWeather-marker" data-marker="true"></div>
         <div class="tabs" id="tabs">
           <div class="tabList" role="tablist">
             <div class="tab" role="tab" aria-selected="true" id="tab-0">

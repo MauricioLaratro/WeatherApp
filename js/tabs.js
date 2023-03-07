@@ -24,7 +24,7 @@ function nextDay(day) {
     return day + 1
 }
 
-// recocrremos el tabList, ya querySelectorAll nos devuelve un nodeList y a los nodeList se les puede aplicar el method .forEach y dentro del arrow function que recibr como parametro. cambiamos el textContent de todos los tabs
+// recorremos el tabList, ya querySelectorAll nos devuelve un nodeList y a los nodeList se les puede aplicar el method .forEach y dentro del arrow function que recibr como parametro. cambiamos el textContent de todos los tabs
 // como week es un array, podemos consultar sus elementos almacenados con numeros. Y como weekday, nos esta devolviendo un numero, podemos hacer lo siguiente: week[weekday] para que corresponda con el nombre del dia actual
 // con weekday = nextDay(weekday) estamos redeclarando week day, con la function de nextDay y utilizando el mismo weekday como parametro (es decir el dia actual que es weekday)
 // Dentro del if establecemos que el primer elemento que esta indexado dentro de tabList (es decir el index 0) que seria el dia actual, en vez de decir el nombre que le asignamos al numero que le corresponda al dia actual, diga "Hoy". Retornamos false, para que detenga la ejecucion de toda la arrow fucntion en ese momento, luego cuando itere por los siguientes dias, como no van a ser el 0 indexado. se ejecutara lo que sigue debajo del if y seguiran teniendo los nombres de los dias que les corresponden.

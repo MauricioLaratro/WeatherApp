@@ -52,3 +52,23 @@
 
 .dayWeather-summary > * {
 }
+
+.dayWeather-atmosphericVar {
+  display: flex;
+  flex-direction: column;
+}
+
+.dayWeather-atmosphericVar.is-hidden {
+  display: none;
+}
+
+.atmosphericVar {
+  display: flex;
+  align-items: center;
+  padding-block-end: 1rem;
+}
+
+.atmosphericVar span {
+  text-align: left;
+  flex: 1
+}

@@ -13,6 +13,7 @@
 .tab[aria-selected="true"] {
   color: var(--primary);
   border-block-end-color: var(--primary);
+  pointer-events: none;
 }
 
 .tabList {

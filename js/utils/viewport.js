@@ -7,7 +7,7 @@ export function setViewportSize($element) {
 // function creada por mi mismo, ya que cambie lo que abarca el container app y agregue all-app container global y tuve que dar un alto fijo a weekly, entonces para que funcione bien el vh en celulares, debo agregar esta fuction tambien, que utilizar el height actual de la web y le resta el tamaño de weekly. Para asi darle el tamaño idea a app, que solo contiene el background y no envuelve a weekly.
 export function setViewportSizeInApp($element) {
     const viewportBlockSize = getViewport()
-    $element.style.blockSize = `calc(${viewportBlockSize}px - var(--weeaklyBlockSize))`
+    $element.style.MaxBlockSize = `calc(${viewportBlockSize}px - var(--weeaklyBlockSize))`
 }
 
 
