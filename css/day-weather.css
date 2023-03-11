@@ -1,6 +1,6 @@
-.dayWeather {
-  /* border: 1px solid red; */
-}
+/* .dayWeather {
+  border: 1px solid red;
+} */
 
 .dayWeather-list {
   display: flex;
@@ -50,12 +50,14 @@
   gap: 1rem;
 }
 
-.dayWeather-summary > * {
-}
+/* .dayWeather-summary > * {
+} */
 
 .dayWeather-atmosphericVar {
   display: flex;
   flex-direction: column;
+  
+  max-inline-size: 624px;
 }
 
 .dayWeather-atmosphericVar.is-hidden {
@@ -70,5 +72,5 @@
 
 .atmosphericVar span {
   text-align: left;
-  flex: 1
+  flex: 1;
 }
